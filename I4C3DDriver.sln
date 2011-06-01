@@ -11,8 +11,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		パフォーマンス1.psess = パフォーマンス1.psess
 	EndProjectSection
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "I4C3DKeysHook", "..\I4C3DKeysHook\I4C3DKeysHook\I4C3DKeysHook.vcxproj", "{6C068A28-B694-4E18-8F65-8980C9123EBC}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "I4C3DModules", "..\I4C3DModules\I4C3DModules\I4C3DModules.vcxproj", "{2505E5CD-00DD-4DD3-872E-2C71C26DCD90}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VirtualMotion", "..\VirtualMotion\VirtualMotion\VirtualMotion.vcxproj", "{719AC964-C709-4F57-809A-309780010F73}"
@@ -32,10 +30,6 @@ Global
 		{DA5F0362-F4DC-4CD1-9F1B-0B500FF4B70C}.Debug|Win32.Build.0 = Debug|Win32
 		{DA5F0362-F4DC-4CD1-9F1B-0B500FF4B70C}.Release|Win32.ActiveCfg = Release|Win32
 		{DA5F0362-F4DC-4CD1-9F1B-0B500FF4B70C}.Release|Win32.Build.0 = Release|Win32
-		{6C068A28-B694-4E18-8F65-8980C9123EBC}.Debug|Win32.ActiveCfg = Debug|Win32
-		{6C068A28-B694-4E18-8F65-8980C9123EBC}.Debug|Win32.Build.0 = Debug|Win32
-		{6C068A28-B694-4E18-8F65-8980C9123EBC}.Release|Win32.ActiveCfg = Release|Win32
-		{6C068A28-B694-4E18-8F65-8980C9123EBC}.Release|Win32.Build.0 = Release|Win32
 		{2505E5CD-00DD-4DD3-872E-2C71C26DCD90}.Debug|Win32.ActiveCfg = Debug|Win32
 		{2505E5CD-00DD-4DD3-872E-2C71C26DCD90}.Debug|Win32.Build.0 = Debug|Win32
 		{2505E5CD-00DD-4DD3-872E-2C71C26DCD90}.Release|Win32.ActiveCfg = Release|Win32
