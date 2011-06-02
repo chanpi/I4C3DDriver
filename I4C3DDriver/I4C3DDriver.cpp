@@ -60,10 +60,6 @@ namespace {
 		_T("Alt+Shift"),
 		_T("Ctrl+Alt+Shift"),
 	};
-	//void* g_pStringData[] = {
-	//	g_szTargetName,
-	//	g_szKeyHandling,
-	//};
 }
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,
@@ -234,7 +230,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	switch (message)
 	{
 	case WM_CREATE:
-		I4C3DStart(_T("I4C3D.xml"), NULL);
+		I4C3DStart(_T("I4C3D.xml"));
 
 		if (!GetModuleFileName(NULL, szFileName, _countof(szFileName))) {
 			MessageBox(hWnd, _T("[ERROR] 実行モジュール名の取得に失敗しました。終了します。"), szTitle, MB_OK | MB_ICONERROR);
@@ -270,7 +266,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			break;
 		case RELOAD_MENU:
 			I4C3DStop();
-			I4C3DStart(_T("I4C3D.xml"), NULL);
+			I4C3DStart(_T("I4C3D.xml"));
 			break;
 		case EXIT_MENU:
 			DestroyWindow(hWnd);

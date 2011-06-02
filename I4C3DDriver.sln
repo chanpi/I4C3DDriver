@@ -17,6 +17,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VirtualMotion", "..\Virtual
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "XMLParser", "..\XMLParser\XMLParser\XMLParser.vcxproj", "{3678573E-F2D5-4B89-B6DA-7C3ACE5B19B9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Miscellaneous", "..\Miscellaneous\Miscellaneous.vcxproj", "{EFD9E5F3-02AA-4718-B5E5-7447D1A9C7AF}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = I4C3DDriver.vsmdi
@@ -42,6 +44,10 @@ Global
 		{3678573E-F2D5-4B89-B6DA-7C3ACE5B19B9}.Debug|Win32.Build.0 = Debug|Win32
 		{3678573E-F2D5-4B89-B6DA-7C3ACE5B19B9}.Release|Win32.ActiveCfg = Release|Win32
 		{3678573E-F2D5-4B89-B6DA-7C3ACE5B19B9}.Release|Win32.Build.0 = Release|Win32
+		{EFD9E5F3-02AA-4718-B5E5-7447D1A9C7AF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EFD9E5F3-02AA-4718-B5E5-7447D1A9C7AF}.Debug|Win32.Build.0 = Debug|Win32
+		{EFD9E5F3-02AA-4718-B5E5-7447D1A9C7AF}.Release|Win32.ActiveCfg = Release|Win32
+		{EFD9E5F3-02AA-4718-B5E5-7447D1A9C7AF}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
