@@ -293,6 +293,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		// TODO: ï`âÊÉRÅ[ÉhÇÇ±Ç±Ç…í«â¡ÇµÇƒÇ≠ÇæÇ≥Ç¢...
 		EndPaint(hWnd, &ps);
 		break;
+
+	case WM_CLOSE:
 	case WM_DESTROY:
 		I4C3DStop();
 		Shell_NotifyIcon(NIM_DELETE, &nIcon);
