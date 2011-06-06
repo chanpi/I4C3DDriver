@@ -33,7 +33,7 @@ INT_PTR CALLBACK	About(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK	DlgProc(HWND, UINT, WPARAM, LPARAM);
 
 namespace {
-	HICON g_hMiniIcon;
+	HICON g_hMiniIcon = NULL;
 	typedef enum { EDIT_MENU, RELOAD_MENU, EXIT_MENU } MENU_ITEMS;
 
 	typedef struct {
@@ -223,8 +223,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	PAINTSTRUCT ps;
 	HDC hdc;
 
-	TCHAR szFileName[MAX_PATH];
-	static NOTIFYICONDATA nIcon;
+	TCHAR szFileName[MAX_PATH] = {0};
+	static NOTIFYICONDATA nIcon = {0};
 	static int sw = 1;
 
 	switch (message)
@@ -234,8 +234,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		if (!GetModuleFileName(NULL, szFileName, _countof(szFileName))) {
 			MessageBox(hWnd, _T("[ERROR] 実行モジュール名の取得に失敗しました。終了します。"), szTitle, MB_OK | MB_ICONERROR);
-			I4C3DStop();
-			PostQuitMessage(0);
+			PostMessage(hWnd, WM_CLOSE, 0, 0);
+			return 0;
 		}
 
 		ExtractIconEx(szFileName, 0, NULL, &g_hMiniIcon, 1);
@@ -293,10 +293,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		// TODO: 描画コードをここに追加してください...
 		EndPaint(hWnd, &ps);
 		break;
+
+	case WM_CLOSE:
 	case WM_DESTROY:
 		I4C3DStop();
-		Shell_NotifyIcon(NIM_DELETE, &nIcon);
-		DestroyIcon(g_hMiniIcon);
+		if (g_hMiniIcon != NULL) {
+			Shell_NotifyIcon(NIM_DELETE, &nIcon);
+			DestroyIcon(g_hMiniIcon);
+		}
 		PostQuitMessage(0);
 		break;
 	default:
@@ -339,8 +343,6 @@ LRESULT CALLBACK DlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 	static HWND hKeyComboBox = NULL;
 	TCHAR szBuffer[MAX_LOADSTRING] = {0};
 
-	WPARAM index;
-
 	switch (message)
 	{
 	case WM_INITDIALOG:
@@ -360,14 +362,16 @@ LRESULT CALLBACK DlgProc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 			// タスクトレイへ
 
 			// ターゲット情報取得
-			g_targetInfo.targetID = (INT)SendMessage(hTargetComboBox, CB_GETCURSEL, 0, 0);
-			g_targetInfo.keyID = (INT)SendMessage(hKeyComboBox, CB_GETCURSEL, 0, 0);
-			GetDlgItemText(hDlg, IDC_EDIT_TUMBLE, szBuffer, _countof(szBuffer));
-			g_targetInfo.tumbleRate = _tstof(szBuffer);
-			GetDlgItemText(hDlg, IDC_EDIT_TRACK, szBuffer, _countof(szBuffer));
-			g_targetInfo.trackRate = _tstof(szBuffer);
-			GetDlgItemText(hDlg, IDC_EDIT_DOLLY, szBuffer, _countof(szBuffer));
-			g_targetInfo.dollyRate = _tstof(szBuffer);
+			if (hTargetComboBox != NULL) {
+				g_targetInfo.targetID = (INT)SendMessage(hTargetComboBox, CB_GETCURSEL, 0, 0);
+				g_targetInfo.keyID = (INT)SendMessage(hKeyComboBox, CB_GETCURSEL, 0, 0);
+				GetDlgItemText(hDlg, IDC_EDIT_TUMBLE, szBuffer, _countof(szBuffer));
+				g_targetInfo.tumbleRate = _tstof(szBuffer);
+				GetDlgItemText(hDlg, IDC_EDIT_TRACK, szBuffer, _countof(szBuffer));
+				g_targetInfo.trackRate = _tstof(szBuffer);
+				GetDlgItemText(hDlg, IDC_EDIT_DOLLY, szBuffer, _countof(szBuffer));
+				g_targetInfo.dollyRate = _tstof(szBuffer);
+			}
 			
 			break;
 
