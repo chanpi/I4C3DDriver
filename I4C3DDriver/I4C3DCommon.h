@@ -9,7 +9,7 @@
 
 // init [修飾キー] [Tumble Rate] [Track Rate] [Dolly Rate] [終端文字]\0
 // init Alt+Shift 1.0 1.0 0.5 ?\0
-static const char* g_initCommandFormat = "%s %s %f %f %f %c";
+static const char* g_initCommandFormat = "%s %s %lf %lf %lf %c";
 
 typedef struct {
 	unsigned char hwnd[4];
@@ -18,5 +18,6 @@ typedef struct {
 
 const int I4C3DAlpha = 1;
 const int cancelKeyDownMillisec = 1000;
+const int waitModkeyDownCount	= 100;
 
 #endif	/* _I4C3DCOMMON_H_ */

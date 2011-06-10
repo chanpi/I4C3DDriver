@@ -2,71 +2,57 @@
 <root>
 	<global>
 		<keys>
-			<key name="log">error</key>		<!-- logメッセージ off/debug/error -->
+			<key name="log">debug</key>		<!-- logメッセージ off/debug/error -->
 			<key name="termination">?</key> <!-- 終端文字 -->
 			<key name="port">6666</key>
-      <key name="backlog">8</key>
-			<key name="accesslimit">10</key>
-			<key name="waitmillisec">500</key>
+			<key name="backlog">8</key>
 			<key name="cpu_threshould_busy">80</key>
-			<key name="cpu_coretime">100</key>
+			<key name="cpu_coretime">80</key>
       <key name="cpu_sampling_rate">2000</key>
-      <key name="target">Maya</key>
 		</keys>
 	</global>
 
 	<softs>
 		<soft name="RTT">
 			<keys>
-				<key name="window_title">RTT DeltaView</key>
-				<key name="modifier">Alt</key>
-				<key name="tumble_rate">1</key>
+				<key name="modifier">Ctrl</key>
+				<key name="tumble_rate">1.2</key>
 				<key name="track_rate">0.05</key>
 				<key name="dolly_rate">1</key>
-        <key name="sleep">0</key>
-
-        <key name="open">Ctrl+O</key>
-				<key name="pref">Ctrl+U</key>
-				<key name="surf">Alt+U</key>
-				<key name="pointer">P</key>
+				<key name="udp_port">10001</key>
 			</keys>
 		</soft>
-
-		<soft name="MAYA">
+		
+		<soft name="Maya">
 			<keys>
-				<key name="window_title">Maya</key>
 				<key name="modifier">Alt</key>
-				<key name="tumble_rate">1</key>
-				<key name="track_rate">1</key>
-				<key name="dolly_rate">1</key>
-        <key name="sleep">1000</key>
-
-        <key name="open">Ctrl+O</key>
+				<key name="tumble_rate">0.2</key>
+				<key name="track_rate">0.3</key>
+				<key name="dolly_rate">0.6</key>
+				<key name="udp_port">10002</key>
 			</keys>
 		</soft>
-
+		
 		<soft name="Alias">
 			<keys>
-				<key name="window_title">Autodesk Alias Design</key>
 				<key name="modifier">Alt+Shift</key>
 				<key name="tumble_rate">1</key>
 				<key name="track_rate">3.5</key>
-				<key name="dolly_rate">5</key>
-        <key name="sleep">3</key>
-				<key name="perspective">F8</key>
+				<key name="dolly_rate">0.2</key>
+				<key name="udp_port">10003</key>
 			</keys>
 		</soft>
-
-		<soft name="SHOWCASE">
+		
+		<soft name="Showcase">
 			<keys>
-				<key name="window_title">Autodesk Showcase 2011 - </key>
 				<key name="modifier">Alt</key>
 				<key name="tumble_rate">1</key>
-				<key name="track_rate">5</key>
-				<key name="dolly_rate">5</key>
-        <key name="sleep">0</key>
+				<key name="track_rate">6</key>
+				<key name="dolly_rate">6</key>
+				<key name="udp_port">10004</key>
 			</keys>
 		</soft>
+		
 	</softs>
 	
 </root>
