@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "I4C3DDriver.h"
 #include "I4C3DModules.h"
+#include "I4C3DDIModules.h"
 #include <ShellAPI.h>
 
 #include <cstdlib>	// 必要
@@ -18,11 +19,14 @@
 
 #define MAX_LOADSTRING	100
 #define MY_NOTIFYICON	(WM_APP+1)
+#define TIMER_ID		1
 
 // グローバル変数:
 HINSTANCE hInst;								// 現在のインターフェイス
 TCHAR szTitle[MAX_LOADSTRING];					// タイトル バーのテキスト
 TCHAR szWindowClass[MAX_LOADSTRING];			// メイン ウィンドウ クラス名
+
+static bool g_bUseDirectInputPlugin = false;
 
 // このコード モジュールに含まれる関数の宣言を転送します:
 ATOM				MyRegisterClass(HINSTANCE hInstance);
@@ -82,6 +86,17 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	LoadString(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
 	LoadString(hInstance, IDC_I4C3DDRIVER, szWindowClass, MAX_LOADSTRING);
 	MyRegisterClass(hInstance);
+
+	int argc = 0;
+	LPTSTR *argv = NULL;
+	argv = CommandLineToArgvW(GetCommandLine(), &argc);
+	if (argc != 2) {
+		MessageBox(NULL, _T("[ERROR] 引数が足りません[例: I4C3DDriver.exe ON]。<I4C3DDriver>"), szTitle, MB_OK | MB_ICONERROR);
+		LocalFree(argv);
+		return EXIT_FAILURE;
+	}
+	g_bUseDirectInputPlugin = _tcsicmp(argv[1], _T("on")) == 0;
+	LocalFree(argv);
 
 	// アプリケーションの初期化を実行します:
 	if (!InitInstance (hInstance, nCmdShow))
@@ -219,6 +234,7 @@ inline void SetTaskTrayIcon(HWND hWnd) {
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+	const int timer_interval = 50;
 	int wmId, wmEvent;
 	PAINTSTRUCT ps;
 	HDC hdc;
@@ -231,6 +247,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	{
 	case WM_CREATE:
 		I4C3DStart(_T("I4C3D.xml"));
+		if (g_bUseDirectInputPlugin) {
+			I4C3DDIStart(_T("I4C3D.xml"), hInst, hWnd);
+		}
 
 		if (!GetModuleFileName(NULL, szFileName, _countof(szFileName))) {
 			MessageBox(hWnd, _T("[ERROR] 実行モジュール名の取得に失敗しました。終了します。"), szTitle, MB_OK | MB_ICONERROR);
@@ -247,6 +266,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		nIcon.hIcon = g_hMiniIcon;
 		_tcscpy_s(nIcon.szTip, szTitle);
 		Shell_NotifyIcon(NIM_ADD, &nIcon);
+
+		// DirectInputのために追記
+		SetTimer(hWnd, TIMER_ID, timer_interval, NULL);
 		break;
 
 	case WM_COMMAND:
@@ -265,8 +287,14 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			ShellExecute(NULL, _T("open"), _T("notepad.exe"), _T("I4C3D.xml"), NULL, SW_SHOW);
 			break;
 		case RELOAD_MENU:
+			if (g_bUseDirectInputPlugin) {
+				I4C3DDIStop();
+			}
 			I4C3DStop();
 			I4C3DStart(_T("I4C3D.xml"));
+			if (g_bUseDirectInputPlugin) {
+				I4C3DDIStart(_T("I4C3D.xml"), hInst, hWnd);
+			}
 			break;
 		case EXIT_MENU:
 			DestroyWindow(hWnd);
@@ -288,6 +316,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		}
 		break;
 
+	case WM_TIMER:
+		if (g_bUseDirectInputPlugin) {
+			I4C3DDICheckInput();
+		}
+		break;
+
 	case WM_PAINT:
 		hdc = BeginPaint(hWnd, &ps);
 		// TODO: 描画コードをここに追加してください...
@@ -297,6 +331,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_CLOSE:
 	case WM_DESTROY:
 		I4C3DStop();
+		if (g_bUseDirectInputPlugin) {
+			I4C3DDIStop();
+		}
 		if (g_hMiniIcon != NULL) {
 			Shell_NotifyIcon(NIM_DELETE, &nIcon);
 			DestroyIcon(g_hMiniIcon);

@@ -13,7 +13,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Miscellaneous", "..\Miscell
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "I4C3DKeysHook", "..\I4C3DKeysHook\I4C3DKeysHook\I4C3DKeysHook.vcxproj", "{6C068A28-B694-4E18-8F65-8980C9123EBC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "I4C3DGamepadModules", "I4C3DGamepadModules\I4C3DGamepadModules.vcxproj", "{AB7325E5-B33D-491E-8F9A-4CD6C21D6F4B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "I4C3DDirectInputModules", "I4C3DDirectInputModules\I4C3DDirectInputModules.vcxproj", "{BAB182AD-D32E-4022-98E2-89F1BC2C6CFA}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -48,10 +48,10 @@ Global
 		{6C068A28-B694-4E18-8F65-8980C9123EBC}.Debug|Win32.Build.0 = Debug|Win32
 		{6C068A28-B694-4E18-8F65-8980C9123EBC}.Release|Win32.ActiveCfg = Release|Win32
 		{6C068A28-B694-4E18-8F65-8980C9123EBC}.Release|Win32.Build.0 = Release|Win32
-		{AB7325E5-B33D-491E-8F9A-4CD6C21D6F4B}.Debug|Win32.ActiveCfg = Debug|Win32
-		{AB7325E5-B33D-491E-8F9A-4CD6C21D6F4B}.Debug|Win32.Build.0 = Debug|Win32
-		{AB7325E5-B33D-491E-8F9A-4CD6C21D6F4B}.Release|Win32.ActiveCfg = Release|Win32
-		{AB7325E5-B33D-491E-8F9A-4CD6C21D6F4B}.Release|Win32.Build.0 = Release|Win32
+		{BAB182AD-D32E-4022-98E2-89F1BC2C6CFA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BAB182AD-D32E-4022-98E2-89F1BC2C6CFA}.Debug|Win32.Build.0 = Debug|Win32
+		{BAB182AD-D32E-4022-98E2-89F1BC2C6CFA}.Release|Win32.ActiveCfg = Release|Win32
+		{BAB182AD-D32E-4022-98E2-89F1BC2C6CFA}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
