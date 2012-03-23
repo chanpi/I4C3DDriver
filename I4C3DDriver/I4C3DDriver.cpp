@@ -27,6 +27,7 @@ TCHAR szTitle[MAX_LOADSTRING];					// タイトル バーのテキスト
 TCHAR szWindowClass[MAX_LOADSTRING];			// メイン ウィンドウ クラス名
 
 static bool g_bUseDirectInputPlugin = false;
+const int timer_interval = 60;
 
 // このコード モジュールに含まれる関数の宣言を転送します:
 ATOM				MyRegisterClass(HINSTANCE hInstance);
@@ -234,7 +235,6 @@ inline void SetTaskTrayIcon(HWND hWnd) {
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-	const int timer_interval = 50;
 	int wmId, wmEvent;
 	PAINTSTRUCT ps;
 	HDC hdc;
@@ -248,7 +248,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_CREATE:
 		I4C3DStart(_T("I4C3D.xml"));
 		if (g_bUseDirectInputPlugin) {
-			I4C3DDIStart(_T("I4C3D.xml"), hInst, hWnd);
+			if (!I4C3DDIStart(_T("I4C3D.xml"), hInst, hWnd)) {
+				MessageBox(hWnd, _T("[ERROR] DIrectInputの初期化に失敗しました。終了します。"), szTitle, MB_OK | MB_ICONERROR);
+				PostMessage(hWnd, WM_CLOSE, 0, 0);
+				return 0;
+			}
 		}
 
 		if (!GetModuleFileName(NULL, szFileName, _countof(szFileName))) {

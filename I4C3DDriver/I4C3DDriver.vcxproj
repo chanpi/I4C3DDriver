@@ -57,6 +57,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <EnablePREfast>true</EnablePREfast>
       <AdditionalIncludeDirectories>C:\Users\chanpi\Documents\Visual Studio 2010\Projects\I4C3DModules\I4C3DModules;C:\Users\chanpi\Documents\Visual Studio 2010\Projects\I4C3DDirectInputModules;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
