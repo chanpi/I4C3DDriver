@@ -1,15 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <global>
-    <keys>
-      <key name="log">debug</key>
-      <!-- logメッセージ off/debug/error -->
-      <key name="termination">?</key>
-      <!-- 終端文字 -->
-      <key name="port">6666</key>
-      <key name="backlog">8</key>
-      <key name="cpu_threshould_busy">80</key>
-      <key name="cpu_coretime">80</key>
+	<global>
+		<keys>
+			<key name="log">error</key>		<!-- logメッセージ off/debug/error -->
+			<key name="termination">?</key> <!-- 終端文字 -->
+			<key name="port">6666</key>
+			<key name="backlog">8</key>
+			<key name="cpu_threshould_busy">80</key>
+			<key name="cpu_coretime">80</key>
       <key name="cpu_sampling_rate">2000</key>
 
       <!-- Gamepad関連 -->
@@ -17,16 +15,24 @@
       <key name="BUTTON_A">MACRO2</key>
       <key name="BUTTON_B">MACRO3</key>
       <key name="BUTTON_Y">MACRO4</key>
-      <key name="BUTTON_UP">GO_UP</key>
-      <key name="BUTTON_DOWN">GO_DOWN</key>
-      <key name="BUTTON_LEFT"></key>
-      <key name="BUTTON_RIGHT"></key>
       <key name="BUTTON_LB"></key>
       <key name="BUTTON_LT"></key>
       <key name="BUTTON_RB"></key>
       <key name="BUTTON_RT">SPEED_UP</key>
       <key name="BUTTON_BACK"></key>
       <key name="BUTTON_START"></key>
+      <key name="BUTTON_LEFTSTICK"></key>
+      <key name="BUTTON_RIGHTSTICK"></key>
+      
+      <key name="BUTTON_UP">GO_UP</key>
+      <key name="BUTTON_DOWN">GO_DOWN</key>
+      <key name="BUTTON_LEFT">GO_LEFT</key>
+      <key name="BUTTON_RIGHT">GO_RIGHT</key>
+      <key name="BUTTON_UPRIGHT"></key>
+      <key name="BUTTON_UPLEFT"></key>
+      <key name="BUTTON_DOWNRIGHT"></key>
+      <key name="BUTTON_DOWNLEFT"></key>
+      
       <key name="STICK_L_UP">CAMERA_UP</key>
       <key name="STICK_L_DOWN">CAMERA_DOWN</key>
       <key name="STICK_L_LEFT">CAMERA_LEFT</key>
@@ -35,62 +41,61 @@
       <key name="STICK_R_DOWN">GO_BACKWARD</key>
       <key name="STICK_R_LEFT"></key>
       <key name="STICK_R_RIGHT"></key>
-      <key name="moveDelta">7</key>
-      <key name="angleDelta">1</key>
-      <key name="pitchDelta">1</key>
-      <key name="heightDelta">2</key>
+      <key name="TUMBLE_DELTA">20</key>
+      <key name="TRACK_DELTA">120</key>
+      <key name="DOLLY_DELTA">10</key>
 
       <key name="defaultHeight">15</key>
     </keys>
-  </global>
+	</global>
 
-  <softs>
-    <soft name="RTT">
-      <keys>
-        <key name="modifier">Ctrl</key>
-        <key name="tumble_rate">1.2</key>
-        <key name="track_rate">0.05</key>
-        <key name="dolly_rate">1</key>
-        <key name="udp_port">10001</key>
-
+	<softs>
+		<soft name="RTT">
+			<keys>
+				<key name="modifier">Ctrl</key>
+				<key name="tumble_rate">1.2</key>
+				<key name="track_rate">0.05</key>
+				<key name="dolly_rate">1</key>
+				<key name="udp_port">10001</key>
+        
         <!-- 例えばアニメーションのショートカット -->
         <key name="MACRO1">1</key>
         <key name="MACRO2">2</key>
-        <key name="MACRO3">3</key>
+        <key name="MACRO3">r</key>
         <key name="MACRO4">Ctrl+Space</key>
       </keys>
-    </soft>
-
-    <soft name="Maya">
-      <keys>
-        <key name="modifier">Alt</key>
-        <key name="tumble_rate">0.2</key>
-        <key name="track_rate">0.3</key>
-        <key name="dolly_rate">0.6</key>
-        <key name="udp_port">10002</key>
-      </keys>
-    </soft>
-
-    <soft name="Alias">
-      <keys>
-        <key name="modifier">Alt+Shift</key>
-        <key name="tumble_rate">1</key>
-        <key name="track_rate">3.5</key>
-        <key name="dolly_rate">0.2</key>
-        <key name="udp_port">10003</key>
-      </keys>
-    </soft>
-
-    <soft name="Showcase">
-      <keys>
-        <key name="modifier">Alt</key>
-        <key name="tumble_rate">1</key>
-        <key name="track_rate">6</key>
-        <key name="dolly_rate">6</key>
-        <key name="udp_port">10004</key>
-      </keys>
-    </soft>
-
-  </softs>
-
+		</soft>
+		
+		<soft name="Maya">
+			<keys>
+				<key name="modifier">Alt</key>
+				<key name="tumble_rate">0.2</key>
+				<key name="track_rate">0.3</key>
+				<key name="dolly_rate">0.6</key>
+				<key name="udp_port">10002</key>
+			</keys>
+		</soft>
+		
+		<soft name="Alias">
+			<keys>
+				<key name="modifier">Alt+Shift</key>
+				<key name="tumble_rate">1</key>
+				<key name="track_rate">3.5</key>
+				<key name="dolly_rate">0.2</key>
+				<key name="udp_port">10003</key>
+			</keys>
+		</soft>
+		
+		<soft name="Showcase">
+			<keys>
+				<key name="modifier">Alt</key>
+				<key name="tumble_rate">1</key>
+				<key name="track_rate">6</key>
+				<key name="dolly_rate">6</key>
+				<key name="udp_port">10004</key>
+			</keys>
+		</soft>
+		
+	</softs>
+	
 </root>
