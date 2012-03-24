@@ -21,7 +21,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Miscellaneous", "..\Miscell
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "I4C3DKeysHook", "..\I4C3DKeysHook\I4C3DKeysHook\I4C3DKeysHook.vcxproj", "{6C068A28-B694-4E18-8F65-8980C9123EBC}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "I4C3DDirectInputModules", "..\I4C3DDirectInputModules\I4C3DDirectInputModules.vcxproj", "{BAB182AD-D32E-4022-98E2-89F1BC2C6CFA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "I4C3DDInput4LogicoolModules", "..\I4C3DDInput4LogicoolModules\I4C3DDInput4LogicoolModules.vcxproj", "{BAB182AD-D32E-4022-98E2-89F1BC2C6CFA}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
