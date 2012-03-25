@@ -13,6 +13,7 @@ static const char* g_initCommandFormat = "%s %s %lf %lf %lf %c";
 
 // registermacro [マクロ名] [キーの組み合わせ] [終端文字]\0
 // registermacro Macro1 1?\0
+// registermacro Macro1 "ANIM anim1 START"?\0
 static const char* g_registerMacroFormat = "%s %s %s %c";
 
 typedef struct {
