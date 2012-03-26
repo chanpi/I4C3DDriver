@@ -4,7 +4,7 @@
 #include "stdafx.h"
 #include "I4C3DDriver.h"
 #include "I4C3DModules.h"
-#include "I4C3DDI4LModules.h"
+#include "F710Modules.h"
 #include <ShellAPI.h>
 
 #include <cstdlib>	// 必要
@@ -248,7 +248,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_CREATE:
 		I4C3DStart(_T("I4C3D.xml"));
 		if (g_bUseDirectInputPlugin) {
-			if (!I4C3DDI4LStart(_T("I4C3D.xml"), hInst, hWnd)) {
+			if (!F710Start(_T("I4C3D.xml"), hInst, hWnd)) {
 				MessageBox(hWnd, _T("[ERROR] DIrectInputの初期化に失敗しました。終了します。"), szTitle, MB_OK | MB_ICONERROR);
 				PostMessage(hWnd, WM_CLOSE, 0, 0);
 				return 0;
@@ -292,12 +292,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			break;
 		case RELOAD_MENU:
 			if (g_bUseDirectInputPlugin) {
-				I4C3DDI4LStop();
+				F710Stop();
 			}
 			I4C3DStop();
 			I4C3DStart(_T("I4C3D.xml"));
 			if (g_bUseDirectInputPlugin) {
-				I4C3DDI4LStart(_T("I4C3D.xml"), hInst, hWnd);
+				F710Start(_T("I4C3D.xml"), hInst, hWnd);
 			}
 			break;
 		case EXIT_MENU:
@@ -322,7 +322,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 	case WM_TIMER:
 		if (g_bUseDirectInputPlugin) {
-			I4C3DDI4LCheckInput();
+			F710CheckInput();
 		}
 		break;
 
@@ -336,7 +336,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	case WM_DESTROY:
 		I4C3DStop();
 		if (g_bUseDirectInputPlugin) {
-			I4C3DDI4LStop();
+			F710Stop();
 		}
 		if (g_hMiniIcon != NULL) {
 			Shell_NotifyIcon(NIM_DELETE, &nIcon);
