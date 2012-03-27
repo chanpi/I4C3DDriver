@@ -100,7 +100,7 @@
       </keys>
     </soft>
 
-    <soft name="RTT4TCP">
+    <soft name="RTT4EC">
       <keys>
         <key name="move_delta">7</key>
         <key name="angle_delta">1</key>

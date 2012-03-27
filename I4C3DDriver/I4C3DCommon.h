@@ -21,14 +21,16 @@ typedef struct {
 	char szCommand[I4C3D_RECEIVE_LENGTH];
 } I4C3DUDPPacket;
 
+const int MAX_MACROS = 32;
+
 const int I4C3DAlpha = 1;
 const int cancelKeyDownMillisec = 1000;
 const int waitModkeyDownCount	= 100;
 
-class IRegisterMacro
-{
-	virtual LPCSTR RegisterMacro(LPCSTR szBuffer, char* termination) = 0;
-	virtual void PlayMacro(LPCSTR macroName) = 0;
-};
+//class IRegisterMacro
+//{
+//	virtual LPCSTR RegisterMacro(LPCSTR szBuffer, char* termination) = 0;
+//	virtual void PlayMacro(LPCSTR macroName) = 0;
+//};
 
 #endif	/* _I4C3DCOMMON_H_ */
