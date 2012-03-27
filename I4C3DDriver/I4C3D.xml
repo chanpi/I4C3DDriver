@@ -109,8 +109,10 @@
         <key name="udp_port">10005</key>
 
         <!-- 例えばアニメーションのショートカット -->
-        <key name="MACRO1">ANIM Animation_group_01_Init START</key>
-        <key name="MACRO2">ANIM Animation_group_02_Init START</key>
+        <key name="MACRO1">ANIM FlyToNormalPosition_Init START</key>
+        <key name="MACRO2">ANIM FlyToLegPosition_Init START</key>
+        <key name="MACRO3">ANIM FlyToHeadPosition_Init START</key>
+        <key name="MACRO4">ANIM FlyToOppositePosition_Init START</key>
       </keys>
     </soft>
 
