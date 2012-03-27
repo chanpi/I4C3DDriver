@@ -27,10 +27,10 @@ const int I4C3DAlpha = 1;
 const int cancelKeyDownMillisec = 1000;
 const int waitModkeyDownCount	= 100;
 
-//class IRegisterMacro
-//{
-//	virtual LPCSTR RegisterMacro(LPCSTR szBuffer, char* termination) = 0;
-//	virtual void PlayMacro(LPCSTR macroName) = 0;
-//};
+// コアとプラグイン間のの通知フォーマット
+typedef struct {
+	unsigned char bodyHeight[4];
+	// データが増える場合にはここに追加
+} NotifyDataFormat;
 
 #endif	/* _I4C3DCOMMON_H_ */

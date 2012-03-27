@@ -249,7 +249,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		I4C3DStart(_T("I4C3D.xml"));
 		if (g_bUseDirectInputPlugin) {
 			if (!F710Start(_T("I4C3D.xml"), hInst, hWnd)) {
-				MessageBox(hWnd, _T("[ERROR] DIrectInputの初期化に失敗しました。終了します。"), szTitle, MB_OK | MB_ICONERROR);
+				MessageBox(hWnd, _T("[ERROR] DirectInputの初期化に失敗しました。終了します。"), szTitle, MB_OK | MB_ICONERROR);
 				PostMessage(hWnd, WM_CLOSE, 0, 0);
 				return 0;
 			}
