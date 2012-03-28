@@ -167,7 +167,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 //        この関数で、グローバル変数でインスタンス ハンドルを保存し、
 //        メイン プログラム ウィンドウを作成および表示します。
 //
-BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
+BOOL InitInstance(HINSTANCE hInstance, int /*nCmdShow*/)
 {
    HWND hWnd;
 
@@ -310,9 +310,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 	case MY_NOTIFYICON:
 		switch (lParam) {
-		case WM_LBUTTONDBLCLK:
-			DialogBox(hInst, MAKEINTRESOURCE(IDD_DIALOG1), NULL, (DLGPROC)DlgProc);
-			break;
+		//case WM_LBUTTONDBLCLK:
+		//	DialogBox(hInst, MAKEINTRESOURCE(IDD_DIALOG1), NULL, (DLGPROC)DlgProc);
+		//	break;
 
 		case WM_RBUTTONDOWN:
 			SetTaskTrayIcon(hWnd);
