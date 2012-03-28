@@ -45,9 +45,10 @@
       <key name="STICK_R_DOWN">GO_BACKWARD</key>
       <key name="STICK_R_LEFT"></key>
       <key name="STICK_R_RIGHT"></key>
-      <key name="TUMBLE_DELTA">20</key>
-      <key name="TRACK_DELTA">120</key>
-      <key name="DOLLY_DELTA">10</key>
+      <key name="TUMBLE_DELTA">30</key>
+      <key name="TRACK_DELTA">180</key>
+      <key name="DOLLY_DELTA">18</key>
+      <key name="SHIFT_TRANSMISSION">2</key>
 
       <key name="defaultHeight">15</key>
     </keys>

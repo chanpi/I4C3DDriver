@@ -27,7 +27,7 @@ TCHAR szTitle[MAX_LOADSTRING];					// タイトル バーのテキスト
 TCHAR szWindowClass[MAX_LOADSTRING];			// メイン ウィンドウ クラス名
 
 static bool g_bUseDirectInputPlugin = false;
-static int timer_interval = 50;
+static int g_timerInterval = 50;
 
 // このコード モジュールに含まれる関数の宣言を転送します:
 ATOM				MyRegisterClass(HINSTANCE hInstance);
@@ -91,12 +91,14 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	int argc = 0;
 	LPTSTR *argv = NULL;
 	argv = CommandLineToArgvW(GetCommandLine(), &argc);
-	if (argc != 2) {
-		MessageBox(NULL, _T("[ERROR] 引数が足りません[例: I4C3DDriver.exe ON]。<I4C3DDriver>"), szTitle, MB_OK | MB_ICONERROR);
+	if (argc < 3) {
+		// [例: I4C3DDriver.exe [LogicoolF710を使用するか] [LogicoolF710の入力チェックインターバル(msec)]]
+		MessageBox(NULL, _T("[ERROR] 引数が足りません[例: I4C3DDriver.exe ON 50]。<I4C3DDriver>"), szTitle, MB_OK | MB_ICONERROR);
 		LocalFree(argv);
 		return EXIT_FAILURE;
 	}
 	g_bUseDirectInputPlugin = _tcsicmp(argv[1], _T("on")) == 0;
+	g_timerInterval = static_cast<int>(_wtoi(argv[2]));
 	LocalFree(argv);
 
 	// アプリケーションの初期化を実行します:
@@ -272,7 +274,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		Shell_NotifyIcon(NIM_ADD, &nIcon);
 
 		// DirectInputのために追記
-		SetTimer(hWnd, TIMER_ID, timer_interval, NULL);
+		SetTimer(hWnd, TIMER_ID, g_timerInterval, NULL);
 		break;
 
 	case WM_COMMAND:
