@@ -11,46 +11,7 @@
       <key name="cpu_threshould_busy">80</key>
       <key name="cpu_coretime">80</key>
       <key name="cpu_sampling_rate">2000</key>
-      <key name="rtt4tcp_mode">on</key>
-      <!-- RTTのTCPモードを有効にするか on/off -->
-
-      <!-- Gamepad関連 -->
-      <key name="BUTTON_X">MACRO1</key>
-      <key name="BUTTON_A">MACRO2</key>
-      <key name="BUTTON_B">MACRO3</key>
-      <key name="BUTTON_Y">MACRO4</key>
-      <key name="BUTTON_LB"></key>
-      <key name="BUTTON_LT"></key>
-      <key name="BUTTON_RB"></key>
-      <key name="BUTTON_RT">SPEED_UP</key>
-      <key name="BUTTON_BACK"></key>
-      <key name="BUTTON_START"></key>
-      <key name="BUTTON_LEFTSTICK"></key>
-      <key name="BUTTON_RIGHTSTICK"></key>
-
-      <key name="BUTTON_UP">GO_UP</key>
-      <key name="BUTTON_DOWN">GO_DOWN</key>
-      <key name="BUTTON_LEFT">GO_LEFT</key>
-      <key name="BUTTON_RIGHT">GO_RIGHT</key>
-      <key name="BUTTON_UPRIGHT"></key>
-      <key name="BUTTON_UPLEFT"></key>
-      <key name="BUTTON_DOWNRIGHT"></key>
-      <key name="BUTTON_DOWNLEFT"></key>
-
-      <key name="STICK_L_UP">CAMERA_UP</key>
-      <key name="STICK_L_DOWN">CAMERA_DOWN</key>
-      <key name="STICK_L_LEFT">CAMERA_LEFT</key>
-      <key name="STICK_L_RIGHT">CAMERA_RIGHT</key>
-      <key name="STICK_R_UP">GO_FORWARD</key>
-      <key name="STICK_R_DOWN">GO_BACKWARD</key>
-      <key name="STICK_R_LEFT"></key>
-      <key name="STICK_R_RIGHT"></key>
-      <key name="TUMBLE_DELTA">30</key>
-      <key name="TRACK_DELTA">180</key>
-      <key name="DOLLY_DELTA">18</key>
-      <key name="SHIFT_TRANSMISSION">2</key>
-
-      <key name="defaultHeight">15</key>
+      <key name="rtt4tcp_mode">on</key> <!-- RTTのTCPモードを有効にするか on/off -->
     </keys>
   </global>
 
@@ -118,6 +79,77 @@
       </keys>
     </soft>
 
+    <soft name="F710Gateway">
+      <keys>
+        <key name="BUTTON_X">MACRO1</key>
+        <key name="BUTTON_A">MACRO2</key>
+        <key name="BUTTON_B">MACRO3</key>
+        <key name="BUTTON_Y">MACRO4</key>
+        <key name="BUTTON_LB"></key>
+        <key name="BUTTON_LT"></key>
+        <key name="BUTTON_RB"></key>
+        <key name="BUTTON_RT">SPEED_UP</key>
+        <key name="BUTTON_BACK"></key>
+        <key name="BUTTON_START"></key>
+        <key name="BUTTON_LEFTSTICK"></key>
+        <key name="BUTTON_RIGHTSTICK"></key>
+
+        <key name="BUTTON_UP">GO_UP</key>
+        <key name="BUTTON_DOWN">GO_DOWN</key>
+        <key name="BUTTON_LEFT">GO_LEFT</key>
+        <key name="BUTTON_RIGHT">GO_RIGHT</key>
+        <key name="BUTTON_UPRIGHT"></key>
+        <key name="BUTTON_UPLEFT"></key>
+        <key name="BUTTON_DOWNRIGHT"></key>
+        <key name="BUTTON_DOWNLEFT"></key>
+
+        <key name="STICK_L_UP">CAMERA_UP</key>
+        <key name="STICK_L_DOWN">CAMERA_DOWN</key>
+        <key name="STICK_L_LEFT">CAMERA_LEFT</key>
+        <key name="STICK_L_RIGHT">CAMERA_RIGHT</key>
+        <key name="STICK_R_UP">GO_FORWARD</key>
+        <key name="STICK_R_DOWN">GO_BACKWARD</key>
+        <key name="STICK_R_LEFT"></key>
+        <key name="STICK_R_RIGHT"></key>
+        <key name="TUMBLE_DELTA">30</key>
+        <key name="TRACK_DELTA">180</key>
+        <key name="DOLLY_DELTA">18</key>
+        <key name="SHIFT_TRANSMISSION">2</key>
+
+        <key name="defaultHeight">15</key>
+      </keys>
+    </soft>
+
+    <soft name="I4C3DLauncher">
+      <keys>
+        <key name="time_to_wait">1000</key>
+
+        <key name="target1">RTTPlugin.exe</key>
+        <key name="target2">MayaPlugin.exe</key>
+        <key name="target3">AliasPlugin.exe</key>
+        <key name="target4">ShowcasePlugin.exe</key>
+        <key name="target5">RTT4ECPlugin.exe</key>
+        <key name="target6">I4C3D.exe</key>
+
+        <key name="target_launcher1">GatewayLauncher</key>
+        
+        <key name="RTTPlugin.exe">10001 -run</key>
+        <key name="MayaPlugin.exe">10002 -run</key>
+        <key name="AliasPlugin.exe">10003 -run</key>
+        <key name="ShowcasePlugin.exe">10004 -run</key>
+        <key name="RTT4ECPlugin.exe">10005 54321 3333 -run</key>
+        <key name="I4C3D.exe"></key>
+      </keys>
+    </soft>
+
+    <soft name="GatewayLauncher">
+      <keys>
+        <key name="time_to_wait">1000</key>
+        <key name="target1">F710Gateway.exe</key>
+        
+        <key name="F710Gateway.exe">30 -run</key>
+      </keys>
+    </soft>
   </softs>
 
 </root>
