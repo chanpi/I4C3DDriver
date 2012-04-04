@@ -4,8 +4,8 @@
 #include "stdafx.h"
 #include "I4C3DDriver.h"
 #include "I4C3DModules.h"
-#include "Miscellaneous.h"
-#include "ErrorCodeList.h"
+#include "Misc.h"
+#include "SharedConstants.h"
 #include <ShellAPI.h>
 
 #include <cstdlib>	// 必要
@@ -17,6 +17,11 @@
 #define new  ::new( _NORMAL_BLOCK, __FILE__, __LINE__ )
 #endif
 
+#if UNICODE || _UNICODE
+static LPCTSTR g_FILE = __FILEW__;
+#else
+static LPCTSTR g_FILE = __FILE__;
+#endif
 
 #define MAX_LOADSTRING	100
 #define MY_NOTIFYICON	(WM_APP+1)
@@ -25,6 +30,10 @@
 HINSTANCE hInst;								// 現在のインターフェイス
 TCHAR szTitle[MAX_LOADSTRING];					// タイトル バーのテキスト
 TCHAR szWindowClass[MAX_LOADSTRING];			// メイン ウィンドウ クラス名
+namespace {
+	static TCHAR g_szConfigFile[MAX_PATH] = {0};
+	static LPCTSTR g_szExecutableOption = _T("-run");
+}
 
 // このコード モジュールに含まれる関数の宣言を転送します:
 ATOM				MyRegisterClass(HINSTANCE hInstance);
@@ -58,12 +67,12 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	int argc = 0;
 	LPTSTR *argv = NULL;
 	argv = CommandLineToArgvW(GetCommandLine(), &argc);
-	if (argc < 2 || 0 != _tcsicmp(argv[1], _T("-run"))) {	// 最後の引数はランチャーからもらう"-run"
-		//LogDebugMessage(Log_Error, _T("起動オプションがありません。このアプリケーションはランチャーから起動される必要があります。"));
+	if (argc < 3 || 0 != _tcsicmp(argv[2], g_szExecutableOption)) {	// 最後の引数はランチャーからもらう"-run"
+		// LoggingMessage(Log_Error, _T(MESSAGE_ERROR_PLUGIN_OPTION), GetLastError(), g_FILE, __LINE__);
 		LocalFree(argv);
 		return EXIT_NOT_EXECUTABLE;
-	
 	}
+	_tcscpy_s(g_szConfigFile, _countof(g_szConfigFile), argv[1]);
 	LocalFree(argv);
 
 	// アプリケーションの初期化を実行します:
@@ -170,7 +179,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	switch (message)
 	{
 	case WM_CREATE:
-		if (!I4C3DStart(_T("I4C3D.xml"))) {
+		if (!I4C3DStart(g_szConfigFile)) {
 			PostQuitMessage(EXIT_FAILURE);
 			return 0;
 		}
