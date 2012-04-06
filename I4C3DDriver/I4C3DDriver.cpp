@@ -6,6 +6,7 @@
 #include "I4C3DModules.h"
 #include "Misc.h"
 #include "SharedConstants.h"
+#include "CertificateManager.h"
 #include <ShellAPI.h>
 
 #include <cstdlib>	// 必要
@@ -66,13 +67,22 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 
 	int argc = 0;
 	LPTSTR *argv = NULL;
-	argv = CommandLineToArgvW(GetCommandLine(), &argc);
-	if (argc < 3 || 0 != _tcsicmp(argv[2], g_szExecutableOption)) {	// 最後の引数はランチャーからもらう"-run"
+	argv = CommandLineToArgvW(GetCommandLine(), &argc);	// hm_core.exe Hamster.lic Hamster.xml -run
+	if (argc < 4 || 0 != _tcsicmp(argv[3], g_szExecutableOption)) {	// 最後の引数はランチャーからもらう"-run"
 		// LoggingMessage(Log_Error, _T(MESSAGE_ERROR_PLUGIN_OPTION), GetLastError(), g_FILE, __LINE__);
 		LocalFree(argv);
 		return EXIT_NOT_EXECUTABLE;
 	}
-	_tcscpy_s(g_szConfigFile, _countof(g_szConfigFile), argv[1]);
+
+	// ライセンスファイル名取得
+	int result = CheckLicense(argv[1]);
+	if (result != EXIT_SUCCESS) {
+		LocalFree(argv);
+		return result;
+	}
+
+	// 設定ファイル名取得
+	_tcscpy_s(g_szConfigFile, _countof(g_szConfigFile), argv[2]);
 	LocalFree(argv);
 
 	// アプリケーションの初期化を実行します:
