@@ -26,6 +26,7 @@ static LPCTSTR g_FILE = __FILE__;
 
 #define MAX_LOADSTRING	100
 #define MY_NOTIFYICON	(WM_APP+1)
+#define MY_I4C3DEXIT	(WM_APP+10)
 
 // グローバル変数:
 HINSTANCE hInst;								// 現在のインターフェイス
@@ -34,6 +35,8 @@ TCHAR szWindowClass[MAX_LOADSTRING];			// メイン ウィンドウ クラス名
 namespace {
 	static TCHAR g_szConfigFile[MAX_PATH] = {0};
 	static LPCTSTR g_szExecutableOption = _T("-run");
+
+	static int I4C3DErrorCode = EXIT_SUCCESS;
 }
 
 // このコード モジュールに含まれる関数の宣言を転送します:
@@ -189,7 +192,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	switch (message)
 	{
 	case WM_CREATE:
-		if (!I4C3DStart(g_szConfigFile)) {
+		if (!I4C3DStart(g_szConfigFile, hWnd)) {
 			PostQuitMessage(EXIT_FAILURE);
 			return 0;
 		}
@@ -219,10 +222,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		EndPaint(hWnd, &ps);
 		break;
 
+	case MY_I4C3DEXIT:
+		I4C3DErrorCode = (int)lParam;
+		PostMessage(hWnd, WM_CLOSE, 0, 0);
+		break;
+
 	case WM_CLOSE:
 	case WM_DESTROY:
 		I4C3DStop();
-		PostQuitMessage(EXIT_SUCCESS);
+		PostQuitMessage(I4C3DErrorCode);
 		break;
 	default:
 		return DefWindowProc(hWnd, message, wParam, lParam);
