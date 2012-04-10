@@ -79,6 +79,7 @@
       <EnablePREfast>true</EnablePREfast>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalIncludeDirectories>$(SolutionDir)\..\I4C3DModules\I4C3DModules;$(SolutionDir)\..\I4C3DLauncher\I4C3DLauncher;$(SolutionDir)\..\Misc;$(SolutionDir)\..\CertificateManager\CertificateManager</AdditionalIncludeDirectories>
+      <AssemblerOutput>All</AssemblerOutput>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -87,6 +88,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>HmModules.lib;CertificateManager.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)\..\I4C3DDriver\Release;$(SolutionDir)\..\CertificateManager\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateMapFile>true</GenerateMapFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
